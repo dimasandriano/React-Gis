@@ -3,16 +3,18 @@ import {
 	FullscreenControl,
 	Marker,
 	NavigationControl,
+	Popup,
 } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
 function Map({ mahasiswa }) {
 	const map = useRef();
 	const mapboxApi = import.meta.env.VITE_MAPBOX_API_KEY;
-
-	const onCLick = () => {
+	const [popupInfo, setPopupInfo] = useState(null);
+	const onCLick = (longitude, latitude) => {
 		map.current?.flyTo({
-			center: [-122.4193, 35.7751],
+			center: [longitude, latitude],
 		});
 	};
 	return (
@@ -33,14 +35,35 @@ function Map({ mahasiswa }) {
 						latitude={mhs.latitude}
 						longitude={mhs.longitude}
 						anchor="bottom"
-						key={mhs.nama}></Marker>
+						key={mhs.nama}
+						onClick={(e) => {
+							e.originalEvent.stopPropagation();
+							setPopupInfo(mhs);
+						}}></Marker>
 				))}
+				{popupInfo && (
+					<Popup
+						anchor="top"
+						longitude={Number(popupInfo.longitude)}
+						latitude={Number(popupInfo.latitude)}
+						onClose={() => setPopupInfo(null)}>
+						<div>
+							{popupInfo.nama}, {popupInfo.umur}
+						</div>
+					</Popup>
+				)}
 
 				<NavigationControl />
 			</MapboxMap>
-			<button className="px-4 py-2 bg-sky-300 text-white" onClick={onCLick}>
-				Klikme
-			</button>
+			{mahasiswa.map((mhs) => (
+				<div key={mhs.id}>
+					<button
+						className="px-4 py-2 bg-sky-300 text-white"
+						onClick={() => onCLick(mhs.longitude, mhs.latitude)}>
+						{mhs.nama}
+					</button>
+				</div>
+			))}
 		</div>
 	);
 }

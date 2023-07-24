@@ -1,4 +1,4 @@
-function Table({ mahasiswa }) {
+function Table({ mahasiswa, handleDelete }) {
 	return (
 		<table
 			className="w-full text-left border border-separate rounded border-slate-200"
@@ -23,12 +23,12 @@ function Table({ mahasiswa }) {
 					<th
 						scope="col"
 						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-						Longitude
+						Latitude
 					</th>
 					<th
 						scope="col"
 						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-						Latitude
+						Longitude
 					</th>
 					<th
 						scope="col"
@@ -50,13 +50,17 @@ function Table({ mahasiswa }) {
 							{item.umur}
 						</td>
 						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-							{item.longitude}
-						</td>
-						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
 							{item.latitude}
 						</td>
 						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-							hapus
+							{item.longitude}
+						</td>
+						<td
+							className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
+							onClick={() => handleDelete(item.id)}>
+							<button className="bg-red-500 text-white py-2 px-4 rounded-lg">
+								Delete
+							</button>
 						</td>
 					</tr>
 				))}

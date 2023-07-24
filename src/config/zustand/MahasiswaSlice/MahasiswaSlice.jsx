@@ -1,4 +1,10 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+	addDoc,
+	collection,
+	deleteDoc,
+	doc,
+	getDocs,
+} from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
 export const MahasiswaSlice = (set, get) => ({
@@ -12,6 +18,10 @@ export const MahasiswaSlice = (set, get) => ({
 	},
 	createMahasiswa: async (data) => {
 		await addDoc(collection(db, "mahasiswa"), data);
+		get().setMahasiswa();
+	},
+	deleteMahasiswa: async (id) => {
+		await deleteDoc(doc(db, "mahasiswa", id));
 		get().setMahasiswa();
 	},
 });
