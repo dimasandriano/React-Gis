@@ -8,7 +8,7 @@ function Navbar() {
 	return (
 		<>
 			<header className="border-b-1 relative z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden mb-5">
-				<div className=" relative mx-auto w-full px-6 lg:max-w-5xl xl:max-w-7xl">
+				<div className=" relative mx-auto w-full px-6 ">
 					<nav
 						aria-label="main navigation"
 						className="flex h-[4.5rem] items-stretch justify-between font-medium text-slate-700"
@@ -39,7 +39,7 @@ function Navbar() {
 									fill="rgba(255,255,255,.2)"
 								/>
 							</svg>
-							Web GIS
+							Sistem Informasi Geografis
 						</a>
 						<button
 							className={`relative order-10 block h-10 w-10 self-center lg:hidden

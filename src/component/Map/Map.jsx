@@ -7,17 +7,18 @@ import {
 } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRef, useState } from "react";
+import { useStore } from "../../config/zustand/store";
 
 function Map({ mahasiswa }) {
 	const map = useRef();
 	const mapboxApi = import.meta.env.VITE_MAPBOX_API_KEY;
 	const [popupInfo, setPopupInfo] = useState(null);
-	const onCLick = (longitude, latitude) => {
-		map.current?.flyTo({
-			center: [longitude, latitude],
-			zoom: 13,
-		});
-	};
+	const transitionMarker = useStore((state) => state.transitionMarker);
+	map.current?.flyTo({
+		center: [transitionMarker.longitude, transitionMarker.latitude],
+		zoom: transitionMarker.zoom,
+	});
+
 	return (
 		<div>
 			<MapboxMap
@@ -28,7 +29,7 @@ function Map({ mahasiswa }) {
 					longitude: 112.1647397,
 					zoom: 11,
 				}}
-				style={{ width: "100%", height: 500 }}
+				style={{ width: "100%", height: 500, borderRadius: 10 }}
 				mapStyle="mapbox://styles/mapbox/streets-v12">
 				<FullscreenControl />
 				{mahasiswa.map((mhs) => (
@@ -56,15 +57,6 @@ function Map({ mahasiswa }) {
 
 				<NavigationControl />
 			</MapboxMap>
-			{mahasiswa.map((mhs) => (
-				<div key={mhs.id}>
-					<button
-						className="px-4 py-2 bg-sky-300 text-white"
-						onClick={() => onCLick(mhs.longitude, mhs.latitude)}>
-						{mhs.nama}
-					</button>
-				</div>
-			))}
 		</div>
 	);
 }

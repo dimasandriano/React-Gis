@@ -3,7 +3,7 @@ import { useStore } from "../../config/zustand/store";
 import { toast } from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 
-function UpdateMahasiswa() {
+function EditMahasiswa() {
 	const { id } = useParams();
 	const updateMahasiswa = useStore((state) => state.updateMahasiswa);
 	const mahasiswa = useStore((state) => state.mahasiswa);
@@ -121,4 +121,4 @@ function UpdateMahasiswa() {
 	);
 }
 
-export default UpdateMahasiswa;
+export default EditMahasiswa;

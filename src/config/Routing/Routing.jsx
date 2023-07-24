@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import {
 	CreateMahasiswa,
 	Dashboard,
+	EditMahasiswa,
 	Home,
 	Login,
-	UpdateMahasiswa,
 } from "../../pages";
 import PrivateRoute from "./PrivateRoute";
 
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
 		path: "/update-mahasiswa/:id",
 		element: (
 			<PrivateRoute>
-				<UpdateMahasiswa />
+				<EditMahasiswa />
 			</PrivateRoute>
 		),
 	},
