@@ -9,11 +9,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useRef, useState } from "react";
 import { useStore } from "../../config/zustand/store";
 
-function Map({ mahasiswa }) {
+function Map({ mahasiswa, mapStyleIndex }) {
 	const map = useRef();
 	const mapboxApi = import.meta.env.VITE_MAPBOX_API_KEY;
 	const [popupInfo, setPopupInfo] = useState(null);
 	const transitionMarker = useStore((state) => state.transitionMarker);
+	const mapStyle = useStore((state) => state.mapStyle);
 	map.current?.flyTo({
 		center: [transitionMarker.longitude, transitionMarker.latitude],
 		zoom: transitionMarker.zoom,
@@ -30,7 +31,7 @@ function Map({ mahasiswa }) {
 					zoom: 11,
 				}}
 				style={{ width: "100%", height: 500, borderRadius: 10 }}
-				mapStyle="mapbox://styles/mapbox/streets-v12">
+				mapStyle={mapStyle[mapStyleIndex]}>
 				<FullscreenControl />
 				{mahasiswa.map((mhs) => (
 					<Marker

@@ -6,13 +6,22 @@ function Home() {
 	const setMahasiswa = useStore((state) => state.setMahasiswa);
 	const mahasiswa = useStore((state) => state.mahasiswa);
 	const setTransitionMarker = useStore((state) => state.setTransitionMarker);
+	const [mapStyleIndex, setMapStyleIndex] = useState(0);
 	const [nama, setNama] = useState("");
 	useEffect(() => {
 		setMahasiswa();
 	}, []);
-	const filteredMahasiswa = mahasiswa.filter((mhs) =>
+	const filteredMahasiswa = mahasiswa?.filter((mhs) =>
 		mhs.nama.toLowerCase().includes(nama.toLowerCase())
 	);
+	const handleChangeStyle = () => {
+		if (mapStyleIndex === 7) {
+			setMapStyleIndex(0);
+		} else {
+			setMapStyleIndex(mapStyleIndex + 1);
+		}
+	};
+
 	return (
 		<div>
 			<Navbar />
@@ -32,10 +41,10 @@ function Home() {
 							/>
 						</div>
 						<table
-							className="w-full text-left border border-separate rounded border-slate-200"
+							className="w-full text-left border border-separate rounded border-slate-200 "
 							cellSpacing="0">
 							<tbody>
-								{filteredMahasiswa.map((mhs) => (
+								{filteredMahasiswa?.map((mhs) => (
 									<tr
 										key={mhs.id}
 										className="transition-colors duration-300 hover:bg-slate-50 cursor-pointer">
@@ -50,7 +59,12 @@ function Home() {
 						</table>
 					</div>
 					<div className="col-span-4 lg:col-span-8">
-						<Map mahasiswa={mahasiswa} />
+						<Map mahasiswa={mahasiswa} mapStyleIndex={mapStyleIndex} />
+						<button
+							onClick={handleChangeStyle}
+							className="py-2 px-4 bg-emerald-500 text-white my-3 rounded-lg">
+							Change Style Map
+						</button>
 					</div>
 				</div>
 			</div>
