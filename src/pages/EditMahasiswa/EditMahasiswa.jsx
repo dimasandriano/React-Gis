@@ -27,7 +27,7 @@ function EditMahasiswa() {
 		<div>
 			<div className="mx-auto w-full px-6 lg:max-w-5xl xl:max-w-7xl">
 				<Link to="/dashboard">
-					<button className="py-2 px-4 text-white bg-emerald-500 rounded-lg">
+					<button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">
 						Kembali
 					</button>
 				</Link>

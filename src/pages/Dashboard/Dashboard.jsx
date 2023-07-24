@@ -8,6 +8,7 @@ function Dashboard() {
 	const setMahasiswa = useStore((state) => state.setMahasiswa);
 	const mahasiswa = useStore((state) => state.mahasiswa);
 	const deleteMahasiswa = useStore((state) => state.deleteMahasiswa);
+	const logout = useStore((state) => state.logout);
 	useEffect(() => {
 		setMahasiswa();
 	}, []);
@@ -22,11 +23,25 @@ function Dashboard() {
 	return (
 		<div>
 			<div className="mx-auto w-full px-6 lg:max-w-5xl xl:max-w-7xl">
-				<Link to="/create-mahasiswa">
-					<button className="py-2 px-4 text-white bg-emerald-500 rounded-lg">
-						Tambah
-					</button>
-				</Link>
+				<div className="flex justify-between">
+					<Link to="/create-mahasiswa">
+						<button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">
+							Tambah
+						</button>
+					</Link>
+					<div className="flex gap-2">
+						<Link to="/">
+							<button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">
+								Home
+							</button>
+						</Link>
+						<button
+							onClick={logout}
+							className="py-2 px-4 text-white bg-red-500 rounded-lg mb-3">
+							Logout
+						</button>
+					</div>
+				</div>
 				<div className="w-full overflow-x-auto">
 					<Table mahasiswa={mahasiswa} handleDelete={handleDelete} />
 				</div>
