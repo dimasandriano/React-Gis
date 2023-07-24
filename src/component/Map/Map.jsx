@@ -29,7 +29,7 @@ function Map({ mahasiswa }) {
 					zoom: 11,
 				}}
 				style={{ width: "100%", height: 500 }}
-				mapStyle="mapbox://styles/mapbox/light-v9">
+				mapStyle="mapbox://styles/mapbox/streets-v12">
 				<FullscreenControl />
 				{mahasiswa.map((mhs) => (
 					<Marker
