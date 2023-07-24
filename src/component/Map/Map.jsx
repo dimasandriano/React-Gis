@@ -15,6 +15,7 @@ function Map({ mahasiswa }) {
 	const onCLick = (longitude, latitude) => {
 		map.current?.flyTo({
 			center: [longitude, latitude],
+			zoom: 13,
 		});
 	};
 	return (

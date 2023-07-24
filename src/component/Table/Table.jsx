@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Table({ mahasiswa, handleDelete }) {
 	return (
 		<table
@@ -55,10 +57,15 @@ function Table({ mahasiswa, handleDelete }) {
 						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
 							{item.longitude}
 						</td>
-						<td
-							className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
-							onClick={() => handleDelete(item.id)}>
-							<button className="bg-red-500 text-white py-2 px-4 rounded-lg">
+						<td className="h-12 px-6 text-sm flex items-center gap-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							<Link to={`/update-mahasiswa/${item.id}`}>
+								<button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+									Update
+								</button>
+							</Link>
+							<button
+								className="bg-red-500 text-white py-2 px-4 rounded-lg"
+								onClick={() => handleDelete(item.id)}>
 								Delete
 							</button>
 						</td>

@@ -4,6 +4,7 @@ import {
 	deleteDoc,
 	doc,
 	getDocs,
+	updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
@@ -22,6 +23,10 @@ export const MahasiswaSlice = (set, get) => ({
 	},
 	deleteMahasiswa: async (id) => {
 		await deleteDoc(doc(db, "mahasiswa", id));
+		get().setMahasiswa();
+	},
+	updateMahasiswa: async (id, data) => {
+		await updateDoc(doc(db, "mahasiswa", id), data);
 		get().setMahasiswa();
 	},
 });
