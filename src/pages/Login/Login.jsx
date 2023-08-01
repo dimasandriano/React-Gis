@@ -47,17 +47,11 @@ function Login() {
 							className="py-2 px-4 bg-emerald-400 rounded-md mb-2 inline-block text-white">
 							Kembali
 						</Link>
-						<img
-							className="w-auto h-7 sm:h-8"
-							src="https://merakiui.com/images/logo.svg"
-							alt=""
-						/>
 
 						<h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl ">
 							sign In
 						</h1>
-
-						<div className="relative flex items-center mt-8">
+						<div className="relative flex items-center mt-6">
 							<span className="absolute">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
