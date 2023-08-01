@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../config/zustand/store";
 
 function Navbar() {
 	const [isToggleOpen, setIsToggleOpen] = useState(false);
 	const user = useStore((state) => state.user);
+	const logout = useStore((state) => state.logout);
+	const navigate = useNavigate();
 	return (
 		<>
 			<header className="border-b-1 relative z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden mb-5">
@@ -75,6 +77,7 @@ function Navbar() {
 							}`}>
 							<li role="none" className="flex items-stretch">
 								<a
+									onClick={() => navigate("/")}
 									role="menuitem"
 									aria-haspopup="false"
 									tabIndex="0"
@@ -82,8 +85,10 @@ function Navbar() {
 									<span>Home</span>
 								</a>
 							</li>
+
 							<li role="none" className="flex items-stretch">
 								<a
+									onClick={() => navigate("/about")}
 									role="menuitem"
 									aria-current="page"
 									aria-haspopup="false"
@@ -109,11 +114,20 @@ function Navbar() {
 										</button>
 									</Link>
 								) : (
-									<Link to="/dashboard">
-										<button className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
-											Dashboard
+									<div className="flex items-center gap-2">
+										<Link to="/dashboard">
+											<button className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
+												Dashboard
+											</button>
+										</Link>
+										{/* <Link to="/" */}
+										<button
+											onClick={logout}
+											className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap  bg-red-500  shadow-red-200 hover:bg-red-600 hover:shadow-sm hover:shadow-red-200 focus:bg-red-700 focus:shadow-sm focus:shadow-red-200 focus-visible:outline-none ">
+											Logout
 										</button>
-									</Link>
+										{/* </Link */}
+									</div>
 								)}
 							</li>
 						</ul>

@@ -1,11 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import {
-	CreateMahasiswa,
-	Dashboard,
-	EditMahasiswa,
-	Home,
-	Login,
-} from "../../pages";
+import { About, Dashboard, EditMahasiswa, Home, Login } from "../../pages";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -18,18 +12,14 @@ export const router = createBrowserRouter([
 		element: <Login />,
 	},
 	{
+		path: "/about",
+		element: <About />,
+	},
+	{
 		path: "/dashboard",
 		element: (
 			<PrivateRoute>
 				<Dashboard />
-			</PrivateRoute>
-		),
-	},
-	{
-		path: "/create-mahasiswa",
-		element: (
-			<PrivateRoute>
-				<CreateMahasiswa />
 			</PrivateRoute>
 		),
 	},

@@ -6,7 +6,7 @@ import {
 	Popup,
 } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore } from "../../config/zustand/store";
 
 function Map({ mahasiswa, mapStyleIndex }) {
@@ -15,10 +15,12 @@ function Map({ mahasiswa, mapStyleIndex }) {
 	const [popupInfo, setPopupInfo] = useState(null);
 	const transitionMarker = useStore((state) => state.transitionMarker);
 	const mapStyle = useStore((state) => state.mapStyle);
-	map.current?.flyTo({
-		center: [transitionMarker.longitude, transitionMarker.latitude],
-		zoom: transitionMarker.zoom,
-	});
+	useEffect(() => {
+		map.current?.flyTo({
+			center: [transitionMarker.longitude, transitionMarker.latitude],
+			zoom: transitionMarker.zoom,
+		});
+	}, [transitionMarker]);
 
 	return (
 		<div>
@@ -30,7 +32,7 @@ function Map({ mahasiswa, mapStyleIndex }) {
 					longitude: 112.1647397,
 					zoom: 11,
 				}}
-				style={{ width: "100%", height: 500, borderRadius: 10 }}
+				style={{ width: "100%", height: 550, borderRadius: 10 }}
 				mapStyle={mapStyle[mapStyleIndex]}>
 				<FullscreenControl />
 				{mahasiswa.map((mhs) => (
@@ -51,7 +53,13 @@ function Map({ mahasiswa, mapStyleIndex }) {
 						latitude={Number(popupInfo.latitude)}
 						onClose={() => setPopupInfo(null)}>
 						<div>
-							{popupInfo.nama}, {popupInfo.umur}
+							<img src={popupInfo.foto} alt={popupInfo.nama} />
+							Nama : {popupInfo.nama} <br />
+							Nim : {popupInfo.nim} <br />
+							Jenis kelamin : {popupInfo.gender} <br />
+							TTL : {popupInfo.ttl} <br />
+							Prodi: {popupInfo.prodi} <br />
+							Fakultas: {popupInfo.fakultas} <br />
 						</div>
 					</Popup>
 				)}

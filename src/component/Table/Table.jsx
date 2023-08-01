@@ -20,8 +20,33 @@ function Table({ mahasiswa, handleDelete }) {
 					<th
 						scope="col"
 						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-						Umur
+						NIM
 					</th>
+					<th
+						scope="col"
+						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+						Jenis Kelamin
+					</th>
+					<th
+						scope="col"
+						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+						TTL
+					</th>
+					<th
+						scope="col"
+						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+						Prodi
+					</th>
+					<th
+						scope="col"
+						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+						Fakultas
+					</th>
+					{/* <th
+						scope="col"
+						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+						URL Foto
+					</th> */}
 					<th
 						scope="col"
 						className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
@@ -49,8 +74,23 @@ function Table({ mahasiswa, handleDelete }) {
 							{item.nama}
 						</td>
 						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-							{item.umur}
+							{item.nim}
 						</td>
+						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							{item.gender}
+						</td>
+						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							{item.ttl}
+						</td>
+						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							{item.prodi}
+						</td>
+						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							{item.fakultas}
+						</td>
+						{/* <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+							{item.foto}
+						</td> */}
 						<td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
 							{item.latitude}
 						</td>
