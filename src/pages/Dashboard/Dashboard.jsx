@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../../config/zustand/store";
-import { Table } from "../../component";
-import { Link } from "react-router-dom";
+import { Modal, Navbar, Table } from "../../component";
 import { toast } from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 function Dashboard() {
   const setMahasiswa = useStore((state) => state.setMahasiswa);
@@ -22,25 +22,23 @@ function Dashboard() {
   };
   return (
     <div>
-      <div className="bg-violet-200 mb-8">
-        <div className="mx-auto w-full px-6 lg:max-w-5xl xl:max-w-7xl">
-          <div className="flex justify-between">
-            <Link to="/create-mahasiswa">
-              <button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">Tambah</button>
+      <div className="mx-auto w-full px-6 lg:max-w-5xl xl:max-w-7xl">
+        <div className="flex justify-between">
+          <Link to="/create-mahasiswa">
+            <button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">Tambah</button>
+          </Link>
+          <div className="flex gap-2">
+            <Link to="/">
+              <button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">Home</button>
             </Link>
-            <div className="flex gap-2">
-              <Link to="/">
-                <button className="py-2 px-4 text-white bg-emerald-500 rounded-lg mb-3">Home</button>
-              </Link>
-              <button onClick={logout} className="py-2 px-4 text-white bg-red-500 rounded-lg mb-3">
-                Logout
-              </button>
-            </div>
+            <button onClick={logout} className="py-2 px-4 text-white bg-red-500 rounded-lg mb-3">
+              Logout
+            </button>
           </div>
         </div>
-      </div>
-      <div className="w-full overflow-x-auto">
-        <Table mahasiswa={mahasiswa} handleDelete={handleDelete} />
+        <div className="w-full overflow-x-auto">
+          <Table mahasiswa={mahasiswa} handleDelete={handleDelete} />
+        </div>
       </div>
     </div>
   );

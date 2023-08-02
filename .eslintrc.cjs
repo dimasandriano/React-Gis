@@ -18,5 +18,6 @@ module.exports = {
 		],
 		"react/prop-types": "off",
 		"react-hooks/exhaustive-deps": 0,
+		"no-mixed-spaces-and-tabs": 0,
 	},
 };
