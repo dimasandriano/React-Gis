@@ -53,7 +53,11 @@ function Map({ mahasiswa, mapStyleIndex }) {
 						latitude={Number(popupInfo.latitude)}
 						onClose={() => setPopupInfo(null)}>
 						<div>
-							<img src={popupInfo.foto} alt={popupInfo.nama} />
+							<img
+								src={popupInfo.foto}
+								alt={popupInfo.nama}
+								className="h-48 mx-auto overflow-hidden"
+							/>
 							Nama : {popupInfo.nama} <br />
 							Nim : {popupInfo.nim} <br />
 							Jenis kelamin : {popupInfo.gender} <br />
